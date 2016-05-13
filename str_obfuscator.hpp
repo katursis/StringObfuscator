@@ -1,5 +1,5 @@
-#ifndef STR_ENCRYPTOR_HPP_
-#define STR_ENCRYPTOR_HPP_
+#ifndef STR_OBFUSCATOR_HPP_
+#define STR_OBFUSCATOR_HPP_
 
 class cryptor
 {
@@ -61,4 +61,4 @@ public:
 	}
 };
 
-#endif // STR_ENCRYPTOR_HPP_
+#endif // STR_OBFUSCATOR_HPP_
