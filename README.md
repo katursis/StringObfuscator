@@ -1,9 +1,9 @@
-# StringEncryptor
-Compile-time encryption of string's (C++11)
+# StringObfuscator
+Compile-time obfuscation of strings (C++11)
 # Example
 ```c++
 #include <iostream>
-#include "str_encryptor.hpp"
+#include "str_obfuscator.hpp"
 
 using namespace std;
 
