@@ -1,5 +1,5 @@
 # StringObfuscator
-Compile-time obfuscation of strings (C++11)
+Compile-time string obfuscation (C++11)
 # Example
 ```c++
 #include <iostream>
