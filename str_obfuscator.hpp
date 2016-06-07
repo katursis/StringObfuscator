@@ -54,7 +54,7 @@ public:
 		mutable bool _decrypted = false;
 	};
 
-	template<std::size_t S>
+	template<size_t S>
 	static constexpr auto create(const char(&str)[S])
 	{
 		return string_encryptor<S>(str);
