@@ -12,8 +12,10 @@ Compile-time string obfuscation (C++11)
 
 using namespace std;
 
-void main(void)
+int main(void)
 {
 	cout << cryptor::create("Hello, World!").decrypt() << endl;
+	
+	return 0;
 }
 ```
