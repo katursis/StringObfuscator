@@ -1,9 +1,8 @@
 # StringObfuscator
-Compile-time string obfuscation (C++11)
+Compile-time string obfuscation (C++14)
 
 ## Requirements
-- VS 2015
-- /O2 compiler flag
+- O2 (optimization option)
 
 ## Example
 ```c++
