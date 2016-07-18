@@ -1,18 +1,42 @@
 #ifndef STR_OBFUSCATOR_HPP_
 #define STR_OBFUSCATOR_HPP_
 
+namespace detail
+{
+	template<size_t index>
+	struct encryptor
+	{
+		static constexpr void encrypt(char *dest, const char *str, char key)
+		{
+			dest[index] = str[index] ^ key;
+
+			encryptor<index - 1>::encrypt(dest, str, key);
+		}
+	};
+
+	template<>
+	struct encryptor<0>
+	{
+		static constexpr void encrypt(char *dest, const char *str, char key)
+		{
+			dest[0] = str[0] ^ key;
+		}
+	};
+};
+
 class cryptor
 {
 public:
 
-	template<size_t S>
+	template<std::size_t S>
 	class string_encryptor
 	{
 	public:
 
-		constexpr string_encryptor(const char str[S])
+		constexpr string_encryptor(const char str[S], char key) :
+			_buffer{}, _decrypted{ false }, _key{ key }
 		{
-			encryptor<S - 1>::encrypt(_buffer, str);
+			detail::encryptor<S - 1>::encrypt(_buffer, str, key);
 		}
 
 		const char *decrypt(void) const
@@ -21,7 +45,7 @@ public:
 				return _buffer;
 
 			for (auto &c : _buffer)
-				c ^= S;
+				c ^= _key;
 
 			_decrypted = true;
 
@@ -30,34 +54,15 @@ public:
 
 	private:
 
-		template<size_t index>
-		struct encryptor
-		{
-			static constexpr void encrypt(char dest[S], const char str[S])
-			{
-				dest[index] = str[index] ^ S;
-
-				encryptor<index - 1>::encrypt(dest, str);
-			}
-		};
-
-		template<>
-		struct encryptor<0>
-		{
-			static constexpr void encrypt(char dest[S], const char str[S])
-			{
-				dest[0] = str[0] ^ S;
-			}
-		};
-
-		mutable char _buffer[S]{};
-		mutable bool _decrypted = false;
+		mutable char _buffer[S];
+		mutable bool _decrypted;
+		const char _key;
 	};
 
-	template<size_t S>
+	template<std::size_t S>
 	static constexpr auto create(const char(&str)[S])
 	{
-		return string_encryptor<S>(str);
+		return string_encryptor<S>{ str, S };
 	}
 };
 
