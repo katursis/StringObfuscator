@@ -9,11 +9,9 @@ Compile-time string obfuscation (C++14)
 #include <iostream>
 #include "str_obfuscator.hpp"
 
-using namespace std;
-
 int main(void)
 {
-	cout << cryptor::create("Hello, World!").decrypt() << endl;
+	std::cout << cryptor::create("Hello, World!").decrypt() << std::endl;
 	
 	return 0;
 }
