@@ -3,7 +3,7 @@
 
 namespace detail
 {
-	template<size_t index>
+	template<std::size_t index>
 	struct encryptor
 	{
 		static constexpr void encrypt(char *dest, const char *str, char key)
