@@ -24,9 +24,9 @@ public:
 	template<std::size_t S>
 	class string_encryptor {
 	public:
-		constexpr string_encryptor(const char str[S], char key) :
-			_buffer{}, _decrypted{false}, _key{key} {
-			detail::encryptor<S - 1>::encrypt(_buffer, str, key);
+		constexpr string_encryptor(const char str[S], int key) :
+			_buffer{}, _decrypted{false}, _key{ key % 255 } {
+			detail::encryptor<S - 1>::encrypt(_buffer, str, _key);
 		}
 
 		const char *decrypt(void) const {
