@@ -25,7 +25,7 @@ public:
 	class string_encryptor {
 	public:
 		constexpr string_encryptor(const char str[S], int key) :
-			_buffer{}, _decrypted{false}, _key{ key % 255 } {
+			_buffer{}, _decrypted{false}, _key{ static_cast<const char>(key % 255) } {
 			detail::encryptor<S - 1>::encrypt(_buffer, str, _key);
 		}
 
