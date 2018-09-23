@@ -29,6 +29,9 @@ public:
 			detail::encryptor<S - 1>::encrypt(_buffer, str, _key);
 		}
 
+		#ifdef __GNUC__
+		__attribute__((noinline))
+		#endif
 		const char *decrypt(void) const {
 			if (_decrypted) {
 				return _buffer;
