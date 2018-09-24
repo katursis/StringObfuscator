@@ -32,7 +32,7 @@ public:
 		#ifdef __GNUC__
 		__attribute__((noinline))
 		#endif
-		const char *decrypt(void) const {
+		const char *decrypt() const {
 			if (_decrypted) {
 				return _buffer;
 			}
