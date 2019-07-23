@@ -4,7 +4,7 @@
 namespace detail {
 	template<std::size_t index>
 	struct encryptor {
-		static constexpr void encrypt(char *dest, const char *str, char key) {
+		__forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
 			dest[index] = str[index] ^ key;
 
 			encryptor<index - 1>::encrypt(dest, str, key);
@@ -13,7 +13,7 @@ namespace detail {
 
 	template<>
 	struct encryptor<0> {
-		static constexpr void encrypt(char *dest, const char *str, char key) {
+		__forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
 			dest[0] = str[0] ^ key;
 		}
 	};
