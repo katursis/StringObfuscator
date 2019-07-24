@@ -1,10 +1,18 @@
 #ifndef STR_OBFUSCATOR_HPP_
 #define STR_OBFUSCATOR_HPP_
 
+#ifdef _MSC_VER
+	#define forceinline __forceinline
+#else
+#ifdef __GNUC__
+	#define forceinline __attribute__((always_inline))
+#endif
+#endif
+
 namespace detail {
 	template<std::size_t index>
 	struct encryptor {
-		__forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
+		forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
 			dest[index] = str[index] ^ key;
 
 			encryptor<index - 1>::encrypt(dest, str, key);
@@ -13,7 +21,7 @@ namespace detail {
 
 	template<>
 	struct encryptor<0> {
-		__forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
+		forceinline static constexpr void encrypt(char *dest, const char *str, char key) {
 			dest[0] = str[0] ^ key;
 		}
 	};
