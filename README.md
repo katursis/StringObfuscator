@@ -1,5 +1,5 @@
 # StringObfuscator
-Compile-time string obfuscation (C++14)
+Simple header-only compile-time string encryptor (C++14)
 
 ## Requirements
 - O2 (optimization option)
@@ -9,10 +9,9 @@ Compile-time string obfuscation (C++14)
 #include <iostream>
 #include "str_obfuscator.hpp"
 
-int main(void)
-{
-	std::cout << cryptor::create("Hello, World!").decrypt() << std::endl;
-	
-	return 0;
+int main() {
+    std::cout << cryptor::create("Hello, World!").decrypt() << std::endl;
+
+    return 0;
 }
 ```
