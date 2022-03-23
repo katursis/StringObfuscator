@@ -1,3 +1,4 @@
+#pragma once
 /*
  * The MIT License (MIT)
  *
@@ -22,8 +23,6 @@
  * SOFTWARE.
  */
 
-#ifndef STR_OBFUSCATOR_HPP_
-#define STR_OBFUSCATOR_HPP_
 
 #ifdef _MSC_VER
 #define forceinline __forceinline
@@ -94,5 +93,3 @@ class cryptor {
     return string_encryptor<S>{str, S};
   }
 };
-
-#endif  // STR_OBFUSCATOR_HPP_
